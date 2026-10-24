@@ -1,32 +1,30 @@
+
 body {
-    margin: 0;
-    min-height: 100vh;
-    background: #101820;
-    color: #f5f5f5;
-    text-align: center;
-    padding-top: 30px;
+  margin: 0;
+  min-height: 100vh;
+  background: #101820;
+  color: #f5f5f5;
+  font-family: monospace;
+  text-align: center;
+  padding-top: 30px;
 }
 
 h1 {
-    color: #ffd54a;
-    font-size: 42px;
-    margin-bottom: 8px;
-
+  color: #ffd54a;
+  font-size: 42px;
+  margin-bottom: 8px;
 }
 
 p {
-    color: #b8c5d1;
-
+  color: #b8c5d1;
 }
 
 canvas {
-    display: block;
-    width: min(800px, 95vx);
-    height: auto;
-    margin: 25px auto;
-    background: #1b2838;
-    border: 2px solid #ffd54a;
-    border-radius: 8px;
-
+  display: block;
+  width: min(800px, 95vw);
+  height: auto;
+  margin: 25px auto;
+  background: #1b2838;
+  border: 2px solid #ffd54a;
+  border-radius: 8px;
 }
-
