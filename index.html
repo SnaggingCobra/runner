@@ -3,18 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Runner</title>
+    <meta name="theme-color" content="#071112">
+    <title>Batti</title>
     <link rel="stylesheet" href="style.css">
-
 </head>
 <body>
-    <h1>
-        Runner
-    </h1>
-    <p>
-        Collect batteries. Keep the lights on
-    </p>
-    <canvas id="game" width="800" height="500"></canvas>
+    <main class="arcade-shell">
+        <header class="top-bar">
+            <a class="brand-lockup" href="#main-menu" aria-label="Batti main menu">
+                BATTI
+            </a>
+            <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" aria-label="Mute sound">
+                SOUND ON
+            </button>
+        </header>
+
+        <section class="menu-screen" id="main-menu" aria-labelledby="menu-title">
+            <div class="menu-content">
+                <div class="menu-copy">
+                    <p class="eyebrow"><span>01</span> BATTERY UNIT / SURVIVAL</p>
+                    <h1 class="game-logo" id="menu-title">BATTI</h1>
+                    <p class="menu-subtitle">POWER UP.<br>STAY ALIVE.</p>
+                    <p class="menu-description">Collect charge. Outrun the dark.</p>
+
+                    <div class="menu-actions">
+                        <button class="button button-primary" id="play-button" type="button" disabled>
+                            <span class="play-glyph" aria-hidden="true"></span>
+                            PLAY
+                        </button>
+                        <button class="button button-secondary" id="how-to-play-button" type="button">
+                            HOW TO PLAY
+                        </button>
+                    </div>
+
+                    <div class="record-display">
+                        <span class="record-label"> HIGH SCORE</span>
+                        <div class="record-value">
+                            <strong id="menu-high-score">000</strong>
+                            <span>BATTERIES</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="menu-scene" aria-label="Batti game artwork">
+                    <div class="scene-screen">
+                        <canvas id="menu-art" width="460" height="260" aria-hidden="true"></canvas>
+                    </div>
+                </aside>
+            </div>
+        </section>
+
+        <section class="game-screen" id="game-screen" aria-label="Batti game" hidden>
+            <div class="game-heading">
+                <span>BATTI <span class="brand-divider">/</span> SURVIVAL RUN</span>
+                <span>MOVE: WASD <span class="brand-divider">OR</span> ARROWS</span>
+            </div>
+            <canvas id="game" width="800" height="500" aria-label="Game area"></canvas>
+            <p class="game-note">COLLECT BATTERIES. DODGE THE CHASERS. PRESS R TO RESTART AFTER GAME OVER.</p>
+        </section>
+    </main>
+
+    <dialog class="how-dialog" id="how-to-play-dialog" aria-labelledby="dialog-title">
+        <div class="dialog-frame">
+            <div class="dialog-topline">
+                <span>FIELD GUIDE / 01</span>
+                <button class="dialog-close" id="close-how-to-play" type="button" aria-label="Close how to play">X</button>
+            </div>
+            <h2 id="dialog-title">HOW TO PLAY</h2>
+            <p class="dialog-intro">Keep your charge up and stay one step ahead.</p>
+            <ul class="instruction-list">
+                <li><span class="instruction-key">MOVE</span><span>WASD or arrow keys</span></li>
+                <li><span class="instruction-key">COLLECT</span><span>Grab batteries to score</span></li>
+                <li><span class="instruction-key">SURVIVE</span><span>Evade enemies; more arrive as your score grows</span></li>
+                <li><span class="instruction-key">RESTART</span><span>Press R after game over</span></li>
+            </ul>
+            
+            <button class="button button-primary dialog-play" id="dialog-play-button" type="button">
+
+                <span class="play-glyph" aria-hidden="true"></span>
+
+                LET'S PLAY
+
+            </button>
+
+        </div>
+
+    </dialog>
+
     <script src="script.js"></script>
+
 </body>
+
 </html>
