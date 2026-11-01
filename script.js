@@ -519,6 +519,20 @@ function draw() {
 
   // Draw all chasing enemies
   enemies.forEach(enemy => {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  drawActor("player", player, 44, 68, "#ffd54a");
+  drawAsset(
+    "battery",
+    battery.x + (battery.size - 34) / 2,
+    battery.y + (battery.size - 46) / 2,
+    34,
+    46,
+    "#ffd54a"
+  );
+
+  // Draw all chasing enemies
+  enemies.forEach(enemy => {
     const sprite = enemySpriteSettings[enemy.sprite] || enemySpriteSettings.speedster;
     drawActor(enemy.sprite, enemy, sprite.width, sprite.height, sprite.color);
   });
@@ -535,6 +549,63 @@ function draw() {
 
   // Lives
   ctx.fillStyle = "#ff7777";
+  ctx.fillText("LIVES: " + lives, 650, 30);
+
+  // Enemy count
+  ctx.fillStyle = "#45d9ff";
+  ctx.font = "16px monospace";
+  ctx.fillText("ENEMIES: " + enemies.length, 20, 85);
+
+  drawEffects(performance.now());
+
+  // Game over
+  if (gameOver) {
+    ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    ctx.textAlign = "center";
+
+    ctx.fillStyle = "#ff5555";
+    ctx.font = "48px monospace";
+    ctx.fillText("GAME OVER", 400, 210);
+
+    ctx.fillStyle = "#ffffff";
+    ctx.font = "22px monospace";
+    ctx.fillText("FINAL SCORE: " + score, 400, 260);
+
+    ctx.fillStyle = "#ffd54a";
+    ctx.font = "20px monospace";
+    ctx.fillText("HIGH SCORE: " + highScore, 400, 300);
+
+    ctx.fillStyle = "#ffd54a";
+    ctx.font = "18px monospace";
+    ctx.fillText("PRESS R TO RESTART", 400, 350);
+
+
+
+    ctx.textAlign = "left";
+  }
+
+    const sprite = enemySpriteSettings[enemy.sprite] || enemySpriteSettings.speedster;
+    drawActor(enemy.sprite, enemy, sprite.width, sprite.height, sprite.color);
+  });
+
+
+  // Score
+  
+  ctx.fillStyle = "#ffffff";
+  ctx.font = "20px monospace";
+  ctx.fillText("BATTERIES: " + score, 20, 30);
+
+  // High score
+  
+  ctx.fillStyle = "#ffd54a";
+  ctx.font = "17px monospace";
+  ctx.fillText("BEST: " + highScore, 22, 58);
+
+  // Lives
+  ctx.fillStyle = "#ff7777";
+  
   ctx.fillText("LIVES: " + lives, 650, 30);
 
   // Enemy count

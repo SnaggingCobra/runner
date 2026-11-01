@@ -19,7 +19,6 @@
 
 body {
   position: relative;
-  min-width: 320px;
   min-height: 100vh;
   margin: 0;
   overflow-x: hidden;
@@ -230,6 +229,8 @@ a:focus-visible {
   background: transparent;
 }
 
+
+
 .button-secondary:hover {
   border-color: var(--mint);
   color: var(--mint);
@@ -383,7 +384,6 @@ a:focus-visible {
 }
 
 .instruction-list {
-  display: grid;
   gap: 0;
   margin: 0;
   padding: 0;
@@ -408,101 +408,6 @@ a:focus-visible {
 
 .dialog-play {
   margin-top: 22px;
-}
-
-@media (max-width: 760px) {
-  .arcade-shell {
-    width: min(100% - 36px, 560px);
-  }
-
-  .menu-screen {
-    min-height: calc(100vh - 75px);
-    padding-top: 36px;
-  }
-
-  .menu-content {
-    grid-template-columns: 1fr;
-    gap: 34px;
-  }
-
-  .menu-copy {
-    padding: 0;
-  }
-
-  .game-logo {
-    font-size: 68px;
-  }
-
-  .menu-scene {
-    max-width: none;
-    justify-self: stretch;
-  }
-
-}
-
-@media (max-width: 480px) {
-  .arcade-shell {
-    width: calc(100% - 28px);
-  }
-
-  .top-bar {
-    height: 62px;
-  }
-
-  .brand-lockup {
-    font-size: 12px;
-  }
-
-  .sound-toggle {
-    min-width: 78px;
-    min-height: 32px;
-    font-size: 9px;
-  }
-
-  .game-logo {
-    font-size: 56px;
-  }
-
-  .menu-subtitle {
-    font-size: 18px;
-  }
-
-  .menu-actions {
-    gap: 10px;
-  }
-
-  .button {
-    min-height: 46px;
-    padding: 0 13px;
-    font-size: 10px;
-  }
-
-  .button-primary {
-    min-width: 125px;
-  }
-
-  .game-screen {
-    margin-top: 24px;
-  }
-
-  .game-heading {
-    gap: 8px;
-    font-size: 8px;
-  }
-
-  .game-note {
-    font-size: 8px;
-  }
-
-  .dialog-frame {
-    padding: 18px;
-  }
-
-  .instruction-list li {
-    grid-template-columns: 74px 1fr;
-    gap: 8px;
-    font-size: 11px;
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {
