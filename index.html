@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#071112">
+    <meta name="theme-color" content="#171b18">
     <title>Batti</title>
     <link rel="stylesheet" href="style.css">
 </head>
@@ -11,7 +11,8 @@
     <main class="arcade-shell">
         <header class="top-bar">
             <a class="brand-lockup" href="#main-menu" aria-label="Batti main menu">
-                BATTI
+                <span>Batti</span>
+                <small>tiny arcade no. 2</small>
             </a>
             <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="false" aria-label="Mute sound">
                 SOUND ON
@@ -21,10 +22,10 @@
         <section class="menu-screen" id="main-menu" aria-labelledby="menu-title">
             <div class="menu-content">
                 <div class="menu-copy">
-                    <p class="eyebrow"><span>01</span> BATTERY UNIT / SURVIVAL</p>
+                    <p class="eyebrow"><span>02</span> a tiny survival game</p>
                     <h1 class="game-logo" id="menu-title">BATTI</h1>
-                    <p class="menu-subtitle">POWER UP.<br>STAY ALIVE.</p>
-                    <p class="menu-description">Collect charge. Outrun the dark.</p>
+                    <p class="menu-subtitle">Keep moving.<br>Keep glowing.</p>
+                    <p class="menu-description">Pick up batteries, dodge anything that follows you, and see how long you can last.</p>
 
                     <div class="menu-actions">
                         <button class="button button-primary" id="play-button" type="button" disabled>
@@ -40,15 +41,15 @@
                         <span class="record-label"> HIGH SCORE</span>
                         <div class="record-value">
                             <strong id="menu-high-score">000</strong>
-                            <span>BATTERIES</span>
+                            <span>batteries found</span>
                         </div>
                     </div>
                 </div>
 
-                <aside class="menu-scene" aria-label="Batti game artwork">
-                    <div class="scene-screen">
-                        <canvas id="menu-art" width="460" height="260" aria-hidden="true"></canvas>
-                    </div>
+                <aside class="menu-note" aria-label="Game tip">
+                    <p class="menu-note-label">A small survival game</p>
+                    <p>Grab the battery.<br>Don't get caught.</p>
+                    <span>WASD or arrow keys</span>
                 </aside>
             </div>
         </section>

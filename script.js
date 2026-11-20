@@ -2,8 +2,6 @@
 const canvas = document.getElementById("game");
 const ctx = canvas.getContext("2d");
 ctx.imageSmoothingEnabled = false;
-const menuArt = document.getElementById("menu-art");
-const menuArtContext = menuArt.getContext("2d");
 const menuHighScore = document.getElementById("menu-high-score");
 const mainMenu = document.getElementById("main-menu");
 const gameScreen = document.getElementById("game-screen");
@@ -132,40 +130,7 @@ function loadAsset(name, path) {
 }
 
 function updateMenuHighScore() {
-  menuHighScore.textContent = String(highScore).padStart(4, "0");
-}
-
-function drawMenuArt() {
-  const width = menuArt.width;
-  const height = menuArt.height;
-  menuArtContext.imageSmoothingEnabled = false;
-  menuArtContext.fillStyle = "#091516";
-  menuArtContext.fillRect(0, 0, width, height);
-
-  menuArtContext.strokeStyle = "rgba(120, 226, 189, 0.08)";
-  menuArtContext.lineWidth = 1;
-  for (let x = 20; x < width; x += 28) {
-    menuArtContext.beginPath();
-    menuArtContext.moveTo(x, 0);
-    menuArtContext.lineTo(x, height);
-    menuArtContext.stroke();
-  }
-  for (let y = 18; y < height; y += 28) {
-    menuArtContext.beginPath();
-    menuArtContext.moveTo(0, y);
-    menuArtContext.lineTo(width, y);
-    menuArtContext.stroke();
-  }
-
-  menuArtContext.fillStyle = "#112925";
-  menuArtContext.fillRect(0, 220, width, 40);
-  menuArtContext.fillStyle = "#78e2bd";
-  menuArtContext.fillRect(16, 220, width - 32, 2);
-
-  if (assets.player) menuArtContext.drawImage(assets.player, 65, 58, 100, 162);
-  if (assets.battery) menuArtContext.drawImage(assets.battery, 203, 48, 42, 58);
-  if (assets.chaser) menuArtContext.drawImage(assets.chaser, 288, 104, 72, 116);
-  if (assets.hunter) menuArtContext.drawImage(assets.hunter, 374, 48, 56, 88);
+  menuHighScore.textContent = String(highScore).padStart(3, "0");
 }
 
 function spawnEffect(type, x, y) {
@@ -200,10 +165,10 @@ const enemies = [
 const ENEMY_SPEED_INCREASE = 0.08;
 const MAX_ENEMY_SPEED = 2.5;
 const enemySpriteSettings = {
-  speedster: { width: 52, height: 63, color: "#45d9ff" },
-  chaser: { width: 52, height: 60, color: "#b85cff" },
-  hunter: { width: 54, height: 64, color: "#45d9ff" },
-  boss: { width: 66, height: 80, color: "#45d9ff" }
+  speedster: { width: 52, height: 63, color: "#a5b58d" },
+  chaser: { width: 52, height: 60, color: "#d18463" },
+  hunter: { width: 54, height: 64, color: "#a5b58d" },
+  boss: { width: 66, height: 80, color: "#d18463" }
 };
 const enemyMovementStyles = {
   speedster: { speedMultiplier: 1.15, orbit: 0.12, separation: 48 },
@@ -507,163 +472,85 @@ function drawEffects(now) {
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-  drawActor("player", player, 44, 68, "#ffd54a");
+  drawActor("player", player, 44, 68, "#d18463");
   drawAsset(
     "battery",
     battery.x + (battery.size - 34) / 2,
     battery.y + (battery.size - 46) / 2,
     34,
     46,
-    "#ffd54a"
+    "#e0c77c"
   );
 
-  // Draw all chasing enemies
-  enemies.forEach(enemy => {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-  drawActor("player", player, 44, 68, "#ffd54a");
-  drawAsset(
-    "battery",
-    battery.x + (battery.size - 34) / 2,
-    battery.y + (battery.size - 46) / 2,
-    34,
-    46,
-    "#ffd54a"
-  );
-
-  // Draw all chasing enemies
   enemies.forEach(enemy => {
     const sprite = enemySpriteSettings[enemy.sprite] || enemySpriteSettings.speedster;
     drawActor(enemy.sprite, enemy, sprite.width, sprite.height, sprite.color);
   });
 
-  // Score
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = "#e8e4d8";
   ctx.font = "20px monospace";
   ctx.fillText("BATTERIES: " + score, 20, 30);
 
-  // High score
-  ctx.fillStyle = "#ffd54a";
+  ctx.fillStyle = "#d18463";
   ctx.font = "17px monospace";
   ctx.fillText("BEST: " + highScore, 22, 58);
 
-  // Lives
-  ctx.fillStyle = "#ff7777";
+  ctx.fillStyle = "#d18463";
   ctx.fillText("LIVES: " + lives, 650, 30);
 
-  // Enemy count
-  ctx.fillStyle = "#45d9ff";
+  ctx.fillStyle = "#a5b58d";
   ctx.font = "16px monospace";
   ctx.fillText("ENEMIES: " + enemies.length, 20, 85);
 
   drawEffects(performance.now());
 
-  // Game over
   if (gameOver) {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
+    ctx.fillStyle = "rgba(15, 19, 16, 0.9)";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     ctx.textAlign = "center";
 
-    ctx.fillStyle = "#ff5555";
+    ctx.fillStyle = "#d18463";
     ctx.font = "48px monospace";
     ctx.fillText("GAME OVER", 400, 210);
 
-    ctx.fillStyle = "#ffffff";
+    ctx.fillStyle = "#e8e4d8";
     ctx.font = "22px monospace";
     ctx.fillText("FINAL SCORE: " + score, 400, 260);
 
-    ctx.fillStyle = "#ffd54a";
+    ctx.fillStyle = "#a5b58d";
     ctx.font = "20px monospace";
     ctx.fillText("HIGH SCORE: " + highScore, 400, 300);
 
-    ctx.fillStyle = "#ffd54a";
+    ctx.fillStyle = "#d18463";
     ctx.font = "18px monospace";
     ctx.fillText("PRESS R TO RESTART", 400, 350);
-
-
-
-    ctx.textAlign = "left";
-  }
-
-    const sprite = enemySpriteSettings[enemy.sprite] || enemySpriteSettings.speedster;
-    drawActor(enemy.sprite, enemy, sprite.width, sprite.height, sprite.color);
-  });
-
-
-  // Score
-  
-  ctx.fillStyle = "#ffffff";
-  ctx.font = "20px monospace";
-  ctx.fillText("BATTERIES: " + score, 20, 30);
-
-  // High score
-  
-  ctx.fillStyle = "#ffd54a";
-  ctx.font = "17px monospace";
-  ctx.fillText("BEST: " + highScore, 22, 58);
-
-  // Lives
-  ctx.fillStyle = "#ff7777";
-  
-  ctx.fillText("LIVES: " + lives, 650, 30);
-
-  // Enemy count
-  ctx.fillStyle = "#45d9ff";
-  ctx.font = "16px monospace";
-  ctx.fillText("ENEMIES: " + enemies.length, 20, 85);
-
-  drawEffects(performance.now());
-
-  // Game over
-  if (gameOver) {
-    ctx.fillStyle = "rgba(0, 0, 0, 0.85)";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-    ctx.textAlign = "center";
-
-    ctx.fillStyle = "#ff5555";
-    ctx.font = "48px monospace";
-    ctx.fillText("GAME OVER", 400, 210);
-
-    ctx.fillStyle = "#ffffff";
-    ctx.font = "22px monospace";
-    ctx.fillText("FINAL SCORE: " + score, 400, 260);
-
-    ctx.fillStyle = "#ffd54a";
-    ctx.font = "20px monospace";
-    ctx.fillText("HIGH SCORE: " + highScore, 400, 300);
-
-    ctx.fillStyle = "#ffd54a";
-    ctx.font = "18px monospace";
-    ctx.fillText("PRESS R TO RESTART", 400, 350);
-
     ctx.textAlign = "left";
   }
 }
 
 function drawPauseScreen() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.78)";
+  ctx.fillStyle = "rgba(15, 19, 16, 0.94)";
   ctx.fillRect(0, 0, canvas.width, canvas.height);
 
   ctx.textAlign = "center";
 
-  ctx.fillStyle = "#ffd54a";
+  ctx.fillStyle = "#d18463";
   ctx.font = "bold 46px monospace";
   ctx.fillText("PAUSED", 400, 180);
 
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = "#e8e4d8";
   ctx.font = "18px monospace";
   ctx.fillText("Take a break!", 400, 220);
 
-  ctx.fillStyle = "#1b8f68";
+  ctx.fillStyle = "#a5b58d";
   ctx.fillRect(290, 270, 220, 55);
 
-  ctx.fillStyle = "#ffffff";
+  ctx.fillStyle = "#171b18";
   ctx.font = "bold 20px monospace";
   ctx.fillText("RESUME", 400, 305);
 
-  ctx.fillStyle = "#aaaaaa";
+  ctx.fillStyle = "#b2b4a9";
   ctx.font = "14px monospace";
   ctx.fillText("PRESS P OR ESC TO RESUME", 400, 370);
 
@@ -706,7 +593,6 @@ Promise.all(
   Object.entries(assetPaths).map(([name, path]) => loadAsset(name, path))
 ).then(() => {
   updateMenuHighScore();
-  drawMenuArt();
   playButton.disabled = false;
   spawnBattery();
 });
