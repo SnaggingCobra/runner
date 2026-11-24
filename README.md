@@ -1,32 +1,32 @@
-# Batti
+# About 
 
-A small browser survival game. Collect batteries, avoid the enemies, and see how
-long you can last.
+Batti is a small browser survival game where your goal is simple: collect batteries, avoid enemies, and survive for as long as possible.
+The more batteries you collect, the harder the game gets. 
 
-## Run
+## Play
+(https://snaggingcobra.github.io/runner/)
 
-Open index.html in a browser, or start a local server from this folder:
-
-
-Then visit https://snaggingcobra.github.io/runner/
+or You can also download the project and open index.html in your browser.
 
 ## Controls
 
-- Move: WASD or arrow keys
-- Pause or resume: P or Escape
-- Restart after game over: R
+- **WASD / Arrow Keys** – Move around
+- **P** – Pause or resume
+- **R** – Restart after game over
 
-## How the chase works
+## How It Works
 
-- Collecting a battery adds one point and increases every enemy's base speed by
-  0.08, up to a cap of 2.5.
-- Another enemy appears at 15 batteries, then every 15 after that (30, 45, and
-  so on). Enemies enter from a randomly chosen edge of the arena.
-- Enemies steer toward the player's center. Each enemy type has its own speed
-  multiplier and orbit strength, and each gets a random orbit direction so they
-  approach from different angles instead of following one identical path.
-- When enemies get close to one another, a separation force nudges them apart.
-  Their movement combines pursuit, orbiting, and spacing, creating varied
-  paths while keeping them aimed at the player.
-- You start with three lives. An enemy collision costs one life and briefly
-  moves you back to your starting position.
+- Collecting a battery gives you 1 point.
+- Enemies get faster as your score increases.
+- A new enemy spawns every 15 batteries.
+- Enemies chase the player but approach from different directions.
+- You start with 3 lives. Getting hit costs one life and sends you back to your starting position.
+- The goal is to get the highest score you can
+
+## AI Usage
+
+I used AI as a helping tool during development, mainly for some of the more challenging parts of the game.
+
+AI Helped work through the enemy chasing and movement logic
+Assisted with implementing orbiting movement and separation between enemies so they don't all follow the exact same path.
+i have Used AI to identify and fix bugs and work through some implementation issues.
